@@ -1,0 +1,62 @@
+1)def fib(n):
+    if n in (1, 2):
+        return 1
+    return fib(n - 1) + fib(n - 2)
+print(fib(6))
+
+2)сложность: 2^n
+
+3)key_for_fib = {1: 1, 2: 1}   
+def memo_fib(n):
+    result = key_for_fib.get(n)
+    if result is None:
+        result = memo_fib(n-2) + memo_fib(n-1)
+        key_for_fib[n] = result
+    return result
+print('Число Фибоначчи:', memo_fib(6))
+
+4)Сложность алгоритма - n * log n, т.к. не имеет узлов, которые встречаются более двух раз.
+
+5)key_for_fib = {1: 1, 2: 1}  
+def memo_cycle(n):
+    result = key_for_fib.get(n)
+    while result == None:
+        result = memo_cycle(n-2) + memo_cycle(n-1)
+        key_for_fib[n] = result
+    return result
+print('Число Фибоначчи:', memo_cycle(6))
+
+6)1) def InterpSearch(ls, val):
+    low = 0
+    high = (len(ls) - 1)
+    while low <= high and val >= ls[low] and val <= ls[high]:
+        index = low + int(((float(high - low) / ( ls[high] - ls[low])) * ( val - ls[low])))
+        if ls[index] == val:
+            return index
+        if ls[index] < val:
+            low = index + 1;
+        else:
+            high = index - 1;
+    return -1
+print(InterpSearch([1,2,3,4,5,6,7,8], 2))
+
+2) from random import randint
+import time
+start_time = time.time()
+def InterpSearch(ls, val):
+    low = 0
+    high = (len(ls) - 1)
+    while low <= high and val >= ls[low] and val <= ls[high]:
+        index = low + int(((float(high - low) / ( ls[high] - ls[low])) * ( val - ls[low])))
+        if ls[index] == val:
+            return index
+        if ls[index] < val:
+            low = index + 1;
+        else:
+            high = index - 1;
+    return -1
+ls = [randint(0,100) for i in range(100)]
+ls = sorted(ls)
+print(ls)
+InterpSearch(ls, 0)
+print("Время поиска %s" % (time.time()-start_time))
