@@ -1,0 +1,57 @@
+1.import time
+def find(lst,x):
+    for y in range(len(lst)):
+        if lst[y]==x:
+            return y           
+lst = []
+for i in range (-3,3):
+    lst.append(i)
+x = -3
+print(lst)
+start = time.time() 
+print(find(lst,x))
+end = time.time()
+print (end-start)
+
+2.import time
+def find(lst,x):
+    left = 0
+    right = len(lst) - 1
+    while left<=right:
+        y = (left + right)//2
+        if lst[y] == x:
+            return y
+        if lst[y]<x:
+            left = y + 1
+        elif lst[y]>x:
+            right = y - 1
+lst = []
+for i in range (-3,3):
+    lst.append(i)
+x = -2
+print(lst)
+start = time.time()            
+print(find(lst,x))
+end = time.time()
+print (end-start)
+
+3.import time
+def find(lst,x,left,right):
+    s = (left+right)//2
+    if lst[s]==x:
+        print(s)
+    elif lst[s]<x:
+        find(lst,x,s+1,right)
+    elif lst[s]>x:
+        find(lst,x,left,s-1)
+lst = []
+for i in range (-3,3):
+    lst.append(i)
+x = -3
+print(lst)
+start = time.time() 
+left = 0
+right = len(lst) - 1
+find(lst,x,left,right)
+end = time.time()
+print (end-start)
